@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "snd-play-server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node snd-play-server.js"
-  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.4",
@@ -14,7 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node snd-play-server.js"
   },
   "author": "",
   "license": "ISC"
