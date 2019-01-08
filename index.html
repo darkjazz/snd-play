@@ -57,7 +57,7 @@
     const AudioContext = window.AudioContext || window.webkitAudioContext;
 
     const audioCtx = new AudioContext();
-    var socket = io.connect('http://192.168.0.10:8080/snd-play');
+    var socket = io.connect('https://play-snd.herokuapp.com/snd-play');
     socket.on('play_snd', function (json) {
       audioCtx.decodeAudioData(json.buffer, function(buffer) {
         document.getElementById("show").innerHTML = "playing " + json.name;
