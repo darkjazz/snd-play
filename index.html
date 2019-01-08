@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Play Sounds</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Kanit:500|Nunito:700|Rock+Salt|Syncopate:700|Inconsolata" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://use.fontawesome.com/84be1777ae.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <style>
+    h1 {
+      color: #81ef0b;
+      font-family: "Syncopate" , sans-serif;
+      font-size: 250%;
+    }
+    h2, h3 {
+      color: #FFAF07;
+      font-family: 'Nunito', sans-serif;
+      font-weight: lighter;
+    }
+    body {
+      background-color: #222;
+      margin: 2em;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    /* #enddocregion quickstart */
+    body {
+      color: #DDD;
+      font-family: 'Nunito', sans-serif;
+    }
+    /* #enddocregion toh */
+    a, a:visited {
+      color: #039be5;
+      -webkit-transition: color .4s ease;
+      transition: color .4s ease;
+      cursor: pointer;
+      cursor: hand;
+      text-decoration: none;
+    }
+
+    a:hover{
+      color: #65c4f2;
+    }
+
+    span{
+      font-family: 'Inconsolata', monospace;
+    }
+  </style>
+
+  <script>
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+
+    const audioCtx = new AudioContext();
+    var socket = io.connect('http://192.168.0.10:8080/snd-play');
+    socket.on('play_snd', function (json) {
+      audioCtx.decodeAudioData(json.buffer, function(buffer) {
+        document.getElementById("show").innerHTML = "playing " + json.name;
+        var source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioCtx.destination);
+        source.loop = false;
+        source.start();
+      })
+    });
+  </script>
+
+</head>
+<body>
+  <div>
+    <p>
+      <h1>Play sounds</h1>
+      This is a Socket.io sound player
+    </p>
+    <div id="show">waiting...</div>
+  </div>
+</body>
+</html>
