@@ -1,6 +1,6 @@
 # Snd Play
 
-This is the source code repository for [Snd Play](https://moodplay.github.io), an example application of socket.io enabled audio player.
+This is the source code repository for [Snd Play](https://play-snd.herokuapp.com), an example application of socket.io enabled audio player.
 
 ## Development server
 Run `node snd-play-server.js` for a dev server and navigate to 127.0.0.1:8080
